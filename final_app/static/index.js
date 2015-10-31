@@ -20,7 +20,7 @@ function flushList() {
 function messageUsers() {
 	$.ajax({
   type: "POST",
-  url: "http://localhost:5000/message",
+  url: "http://localhost:5000/",
   data: { 'phone_number': queue[0][1], 'message': 'You have reached the front of the Queue! Please approach the front desk.'}
 }).done(function( o ) {
    // do something
@@ -30,7 +30,7 @@ function messageUsers() {
 	user = queue[i]
 	$.ajax({
   type: "POST",
-  url: "http://localhost:5000/message",
+  url: "http://localhost:5000/",
   data: { 'phone_number': user[1], 'message': 'There are '.concat(i.toString()).concat(' people remaining')}
 }).done(function( o ) {
    // do something
