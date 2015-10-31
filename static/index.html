@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title> Q - The only queue </title>
+        <style>
+    .box{
+        position: absolute;
+        border: 10px;
+        border-color: black;
+        margin:0 auto;
+        top:50%;
+        left:50%;
+        width: 370px;
+        height: 350px;
+        background-color: aqua;
+        margin-top: -160;
+        margin-left: -180;
+        text-align: center;
+        box-shadow: 5px 5px 5px grey;
+        border-radius: 10px;
+        padding-top: 0px;
+        padding-bottom: 20px;
+    
+        
+    }
+        .number{
+          width:320px;
+            margin-top: 1px;
+            margin-bottom: 6px;
+        }
+        body{
+            
+            vertical-align:middle;
+            font-family: 'Open Sans', sans-serif;
+        
+                
+        }
+        .submit
+        {
+            width: 100%;
+            text-align: center;
+            height: 40px;
+            margin-top: -5px;
+        }
+    
+    </style>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+	</head>
+	<body>
+		
+        <div class="box">
+            <h1>
+			Q - Enter details : 
+		</h1>
+		<form class="pure-form pure-form-aligned" action = "/api/info" method="POST"> 
+			<input class="number" name="name" placeholder="Name" type="text"/>
+			<input class="number" name="area_code" placeholder="Area Code" type="text" maxlength="10"/>
+			<input class="number" name="phone_number" placeholder="Phone number"type="text" maxlength="12"/>
+			<input class="number" name="event_id" placeholder="Event ID" type="text" maxlength="11"/>
+			<input class="number" name="event_name" placeholder="Event Name" type="text" maxlength="12"/><br>
+			<input type="submit"/>
+		</form>
+	</body>
+</html>
