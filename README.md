@@ -19,6 +19,7 @@ All the messaging action occurs thorugh a Python script hosted on localhost, dri
 by an organizer, an AJAX request is sent to the Python script, which then performs the task of messaging. The queue is
 currently stored in the JavaScript of the organizer page, and will be given a dedicated database in future scale-ups. 
 
-All of the code for this project was written during the CSUA Hackathon 2015.
+All of the code for this project was written during the CSUA Hackathon 2015, except for a small portion of the CSS for the organizers's
+webpage (which was taken from a previous project).
 
 - A project by Aditya Baradwaj
