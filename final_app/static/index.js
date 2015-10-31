@@ -13,15 +13,15 @@ queue = []
 
 function flushList() {
 	document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    //document.getElementById("event_id").value = "";
+    document.getElementById("phone_number").value = "";
+    document.getElementById("event_id").value = "";
 }
 
-function emailUsers() {
+function messageUsers() {
 	$.ajax({
   type: "POST",
-  url: "http://localhost:5000/",
-  data: { 'email': queue[0][1], 'message': 'You have reached the front of the Queue! Please approach the front desk.'}
+  url: "http://localhost:5000/message",
+  data: { 'phone_number': queue[0][1], 'message': 'You have reached the front of the Queue! Please approach the front desk.'}
 }).done(function( o ) {
    // do something
 });
@@ -30,8 +30,8 @@ function emailUsers() {
 	user = queue[i]
 	$.ajax({
   type: "POST",
-  url: "http://localhost:5000/",
-  data: { 'email': user[1], 'message': 'There are '.concat(i.toString()).concat(' people remaining')}
+  url: "http://localhost:5000/message",
+  data: { 'phone_number': user[1], 'message': 'There are '.concat(i.toString()).concat(' people remaining')}
 }).done(function( o ) {
    // do something
 });
@@ -43,10 +43,10 @@ function add() {
     // TODO: Show the queue on submission
 
     var name = document.getElementById("name").value.trim();
-    var email = document.getElementById("email").value.trim();
-    //var event_id = document.getElementById("event_id").value.trim();
+    var phone_number = document.getElementById("phone_number").value.trim();
+    var event_id = document.getElementById("event_id").value.trim();
 
-    queue.push([name, email]);
+    queue.push([name, phone_number, event_id]);
 
     flushList();
 
@@ -54,7 +54,7 @@ function add() {
 }
 
 function next() {
-	emailUsers();
+	messageUsers();
 
 	queue.shift();
 

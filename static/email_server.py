@@ -8,14 +8,14 @@ queue = []
 @app.route("/", methods=["POST"])
 def send_email():
 	email = request.form.get('email')
-	email = request.form.get('message')
+	message = request.form.get('message')
 
 	fromaddr = 'qmessaging@gmail.com'
 	toaddrs  = email
 	msg = "\r\n".join([
 	  "From: qmessaging@gmail.com",
 	  "To: "+email,
-	  "Subject: Just a message",
+	  "Subject: Queue update!",
 	  "",
 	  message
 	  ])
