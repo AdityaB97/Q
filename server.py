@@ -10,11 +10,9 @@ def hello():
 @app.route("/api/info", methods=["POST"])
 def receive_client():
 	name = request.form['name']
-	area_code = request.form['area_code']
-	phone_number = request.form['phone_number']
+	email = request.form['email']
 	event_id = request.form['event_id']
-	event_name = request.form['event_name']
-	queue.append([name, area_code, phone_number, event_id, event_name,])
+	queue.append([name, email, event_id])
 	print(queue)
 	return "Thank you. Your response has been recorded."
 
