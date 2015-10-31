@@ -1,5 +1,4 @@
-# Q
-Q - You'll never have to stand in line again!
+# Q - You'll never have to stand in line again!
 
 Q is an online queue management system. Organizers can create queues for their events. Instead of waiting in line, people 
 can register themselves in a virtual queue. This delocalizes the waiting process and allows people to be productive in the time
@@ -16,5 +15,6 @@ updated about their status in the queue (this happens each time the organizer pr
 front of the line. In the next update, I plan to give users the capacity to add and remove themselves from the queue by text message. Users
 will also have the capacity to report delays, and adjust their queue position accordingly
 
-
-
+All the messaging action occurs thorugh a Python script hosted on localhost, driven by the Twilio messaging API. Whenever "next" is triggered
+by an organizer, an AJAX request is sent to the Python script, which then performs the task of messaging. The queue is
+currently stored in the JavaScript of the organizer page, and will be given a dedicated database in future scale-ups. 
