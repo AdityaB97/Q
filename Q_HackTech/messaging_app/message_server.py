@@ -1,8 +1,17 @@
 import flask
 from twilio.rest import TwilioRestClient
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
+import twilio.twiml
+from collections import deque
 
 app = Flask(__name__)
+
+Q = deque()
+
+def delete_nth(d, n):
+	d.rotate(-n)
+	d.popleft()
+	d.rotate(n)
 
 @app.route("/", methods=["POST"])
 def send_message():
@@ -23,6 +32,14 @@ def send_message():
 	resp = flask.Response("success")
 	resp.headers['Access-Control-Allow-Origin'] = '*'
 	return resp
+
+@app.route("/incoming", methods=['GET', 'POST'])
+def hello_monkey():
+    """Respond to incoming calls with a simple text message."""
+ 
+    resp = twilio.twiml.Response()
+    resp.message("Hello, Mobile Monkey")
+    return str(resp)
 	
 
 if __name__ == "__main__":
