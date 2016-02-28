@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, redirect
 import twilio.twiml
 from collections import deque
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 class Person:
 	def __init__(self, name, number):
@@ -89,6 +89,7 @@ callers = {
     "+14158675311": "Virgil",
     "+13106621364": "Aditya",
     "+18136009605": "Jordan",
+    "+15107089924": "Aparna",
 }
 
 # @app.route("/", methods=['GET', 'POST'])
@@ -96,16 +97,40 @@ callers = {
 #     """Respond and greet the caller by name."""
  
 #     from_number = request.values.get('From', None)
-#     body = request.values.get('Body', None)
-
-#     if not database.exists(from_number):
-
- 	
-#     message = message + " \n Your body: " + body
+#     if from_number in callers:
+#         message = callers[from_number] + ", thanks for the message!"
+#     else:
+#         message = "Monkey, thanks for the message!"
+ 
 #     resp = twilio.twiml.Response()
 #     resp.message(message)
  
 #     return str(resp)
 
-# if __name__ == "__main__":
-# 	app.run(debug=True)
+@app.route("/", methods=['GET', 'POST'])
+def hello_monkey():
+    """Respond and greet the caller by name."""
+ 
+    from_number = request.values.get('From', None)
+    body = request.values.get('Body', None)
+
+    if not database.exists(from_number):
+    	person = Person(body, from_number)
+    	database.add(person)
+    	message = "Successfully added to queue!"
+    elif body == "REMOVE":
+    	database.remove(from_number)
+    	message = "Successfully removed from queue!"
+    elif body == "POSITION":
+    	position = database.lookup(from_number).index
+    	message = "There are " + position + " people ahead of you."
+    else:
+        message = "Please enter a proper command."
+    
+    resp = twilio.twiml.Response()
+    resp.message(message)
+ 
+    return str(resp)
+
+if __name__ == "__main__":
+	app.run(debug=True)
